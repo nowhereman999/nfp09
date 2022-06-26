@@ -9,9 +9,12 @@ end up in the same namespace.  Therefore, we need to create our own
 local namespaces in each file by tweaking the symbol names.
 
 FILES THAT HAVE BEEN CONVERTED:
+- equates.sa
 - frnbak.sa
 
 MAJOR TODO ITEMS:
+- There are equates in equates.s that will be interpreted as octal
+  numbers by asm6809; verify that is the intent.
 - Replace the IF-ENDIF constructs in the original code.  They are
   currently preserved as-is.  Those were implemented as assembler
   macros in the original, but asm6809's macro support cannot replicate

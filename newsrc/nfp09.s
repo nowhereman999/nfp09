@@ -8,6 +8,9 @@
 	; Pull in the macros used all over the place.
 	include "macros.s"
 
+	; Pull in the global equates.
+	include "equates.s"
+
 	;
 	; frnbak.s must be the first real source file, as it includes
 	; the ROM-LINK header.
