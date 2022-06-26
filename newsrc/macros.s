@@ -33,6 +33,32 @@ PULS_ALLPC	macro
 ;
 ;**********************************************
 ;
+; SLD N
+;   MACRO TO LOGICALLY SHIFT D-REG N BITS OO
+;   THE LEFT. (1 <= N <= 8)
+;
+;   CALL: SLD N
+;
+;**********************************************
+;
+SLD1	macro
+	LSLB
+	ROLA
+	endm
+
+SLD2	macro
+	SLD1
+	SLD1
+	endm
+
+SLD4	macro
+	SLD2
+	SLD2
+	endm
+
+;
+;**********************************************
+;
 ;  INCREMENT AND DECREMENT 16 BIT REGISTERS
 ;
 ;**********************************************
