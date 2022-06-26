@@ -54,7 +54,7 @@
 ;****************************************************************
 ;
 ; Here is the label for the start of the ROM.
-: NOTE: This label should always be the first
+; NOTE: This label should always be the first
 ; byte in this module!
 ;
 ROMSTR
@@ -371,7 +371,7 @@ MONAD
 RDYAD
 	LBSR	IREG		; GO INIT STACK FRAME
 	LDY	PARG1,U		; GETARG(PARG1,^ARG1)
-	LEAX	LEAX
+	LEAX	ARG1,U
 	CLRB			; ARGUMENT 1 FLAG
 	LBSR	GETARG
 	BCC	RDYXIT		; TRAPPING NAN ABORT
@@ -452,7 +452,7 @@ GT2OUT
 ;
 RFPCMP
 	CLRB			; B = 0 = NO PREDICATE
-	BRA	PCMPMT		GO JOIN MUTUAL REGISTER COMPARE
+	BRA	PCMPMT		; GO JOIN MUTUAL REGISTER COMPARE
 
 ;********* PREDICATE COMPARES ***********************************
 ;
@@ -486,7 +486,7 @@ PCMPMT
 	BCC	PCMXIT		; IFCC CS
 	TST	,S		;   IFTST (,S),NE,#0
 	BEQ	PCMXIT
-	TST	(FRACTR,U)	;     IFTST  (FRACTR,U),EQ,#0
+	TST	FRACTR,U	;     IFTST  (FRACTR,U),EQ,#0
 	BNE	1F
 	; BSETA  Z,(CCREG,U)
 	LDA	CCREG,U
@@ -653,7 +653,7 @@ RFPMOV
 	; MOVD  (2,Y),(2,X)
 	LDD	2,Y
 	STD	2,X
-	MOVD  (,Y),(,X)
+	; MOVD  (,Y),(,X)
 	LDD	,Y
 	STD	,X
 	PULS_ALLPC		; EXIT
