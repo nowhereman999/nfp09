@@ -1,0 +1,19 @@
+This is a collection of notes I'm maintaining while doing the
+updating work.
+
+The main assembly file that will be built by asm6809 is nfp09.s.  This file
+will include the individual updated .s files in the correct order.
+
+Note that since asm6809 does not have multi-object linking, all symbols
+end up in the same namespace.  Therefore, we need to create our own
+local namespaces in each file by tweaking the symbol names.
+
+MAJOR TODO ITEMS:
+- Replace the IF-ENDIF constructs in the original code.  They are
+  currently preserved as-is.  Those were implemented as assembler
+  macros in the original, but asm6809's macro support cannot replicate
+  them.
+- Ditto with IFTST.
+- Ditto with IFCC.
+- Ditto with WHILE-ENDWH
+- Ditto with REPEAT-UNTIL
