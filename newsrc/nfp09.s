@@ -16,3 +16,7 @@
 	; the ROM-LINK header.
 	;
 	include "frnbak.s"
+
+	include "getput.s"
+	include "dispat.s"
+	include "procs.s"
