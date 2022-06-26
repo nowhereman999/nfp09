@@ -8,6 +8,9 @@ Note that since asm6809 does not have multi-object linking, all symbols
 end up in the same namespace.  Therefore, we need to create our own
 local namespaces in each file by tweaking the symbol names.
 
+FILES THAT HAVE BEEN CONVERTED:
+- frnbak.sa
+
 MAJOR TODO ITEMS:
 - Replace the IF-ENDIF constructs in the original code.  They are
   currently preserved as-is.  Those were implemented as assembler
