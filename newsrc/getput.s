@@ -137,7 +137,43 @@ MOVRSL
 ;
 ;*****************************************************************
 TRAP
-	; XXXJRT
+	TST	TSTAT,U		; DO A QUICK EXIT IF NO BITS ARE SET
+	BNE	1F
+	ORCC	#C		; Set Carry.
+	RTS			; Peace out.
+1
+	PSHS	D,X
+	LDX	PFPCB,U		; GET POINTER TO FPCB
+	LDD	TSTAT,U		; GET BOTH STATUS BYTES
+	BITA	#ERRIOP		; IOP ERROR?
+	BEQ	1F		; No, skip...
+	STB	SS,X		; STORE SECONDARY STATUS
+1
+	ORA	ERR,X		; OR IN CURRENT STATUS BITS
+	STA	ERR,X		; STORE IN USER'S FPCB
+	LDB	ENB,X		; GET ENABLE BITS
+	LDA	FUNCT,U		; GET FUNCTION CODE
+	BITA	#TONUN		; Trap on unordered compare?
+	BEQ	1F		; No, skip...
+	ORB	#ENBUN		; ENABLE UNORDERED TRAP
+1
+	ANDB	TSTAT,U		; AND WITH ERROR STATUS FROM THIS OPERATION
+	BEQ	1F		; No traps enabled...
+	LDA	#-1		; INIT FOR LOOP INDEX
+2
+	INCA			; INCR INDEX
+	LSRB			; FOUND HIGHEST ENABLED TRAP?
+	BCC	2B		; LOOP IF NOT
+	PSHS	X,Y,U,D		; PROTECT REGS FROM USER
+	JSR	[TRAPV,X]	; GO TO USER TRAP HANDLER
+	PULS	X,Y,U,D		; RESTORE REGS
+	BRA	2F		; User trap handler sets Carry as desired.
+1
+	ORCC	#C		; CARRY = 1 = NO TRAP OCCURED
+2
+	LDD	#0		; CLEAR OUT TEMP STATUS
+	STD	TSTAT,U
+	PULS	X,D,PC
 
 ;*****************************************************************
 ;
