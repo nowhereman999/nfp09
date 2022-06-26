@@ -11,6 +11,7 @@ local namespaces in each file by tweaking the symbol names.
 FILES THAT HAVE BEEN CONVERTED:
 - equates.sa
 - frnbak.sa
+- procs.sa
 
 MAJOR TODO ITEMS:
 - There are equates in equates.s that will be interpreted as octal
