@@ -33,6 +33,32 @@ PULS_ALLPC	macro
 ;
 ;**********************************************
 ;
+; SRD N
+;   MACRO TO LOGICALLY SHIFT D-REG N BITS OO
+;   THE RIGHT. (1 <= N <= 8)
+;
+;   CALL: SRD N
+;
+;**********************************************
+;
+SRD1	macro
+	LSRA
+	RORB
+	endm
+
+SRD2	macro
+	SRD1
+	SRD1
+	endm
+
+SRD4	macro
+	SRD2
+	SRD2
+	endm
+
+;
+;**********************************************
+;
 ; SLD N
 ;   MACRO TO LOGICALLY SHIFT D-REG N BITS OO
 ;   THE LEFT. (1 <= N <= 8)
