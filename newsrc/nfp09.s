@@ -19,4 +19,5 @@
 
 	include "getput.s"
 	include "dispat.s"
+	include "comp.s"
 	include "procs.s"
