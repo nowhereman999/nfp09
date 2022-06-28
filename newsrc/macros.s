@@ -138,6 +138,28 @@ DECD		macro
 ;
 ;**********************************************
 ;
+;  IOP N
+;
+;    MACRO TO SET INVALID OPERATION STATUS BITS IN
+;    THE TEMPORARY STATUS BYTES ON THE STACK FRAME
+;    SETS IOP BIT AND INVALID OPERATION CODE.
+;
+;  CALL: IOP N
+;    WHERE N IS A VALID INVALID OPERATION NUMBER
+;   USES A REGISTER
+;
+; USES A-REGISTER
+;
+;**********************************************
+;
+IOP		macro
+		LDA	#\1
+		LBSR	IOPSUB	; SET IOP CODE,IOP BIT & RETURN A NAN
+		endm
+
+;
+;**********************************************
+;
 ;    XPLUSY --
 ;
 ;        THIS MACRO EFFICIENTLY ADDS THE 9-BYTE
