@@ -9,6 +9,7 @@ ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
 ROM_DEPS+=	macros.s
 ROM_DEPS+=	procs.s
+ROM_DEPS+=	util.s
 
 CLEANFILES=	$(ROM_IMAGES) *.lst
 

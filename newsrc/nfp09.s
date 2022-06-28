@@ -21,3 +21,4 @@
 	include "dispat.s"
 	include "comp.s"
 	include "procs.s"
+	include "util.s"
