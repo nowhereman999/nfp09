@@ -21,4 +21,5 @@
 	include "dispat.s"
 	include "comp.s"
 	include "procs.s"
+	include "rndexep.s"
 	include "util.s"

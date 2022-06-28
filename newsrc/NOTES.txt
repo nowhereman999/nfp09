@@ -14,6 +14,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - frnbak.sa
 - getput.sa
 - procs.sa
+- rndexep.sa
 - util.sa
 
 MAJOR TODO ITEMS:
