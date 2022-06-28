@@ -16,13 +16,10 @@ FILES THAT HAVE BEEN CONVERTED:
 - procs.sa
 
 MAJOR TODO ITEMS:
+- I have found some for-sure bugs and some maybe bugs.  They're
+  tagged with XXXJRT and I need to file Issues for them.
+- I have also found some opportunities for optimization that are
+  present after removing the macro-ized IF-ELSE-ENDIF stuff.  Those
+  locations are also tagged with XXXJRT.
 - There are equates in equates.s that will be interpreted as octal
   numbers by asm6809; verify that is the intent.
-- Replace the IF-ENDIF constructs in the original code.  They are
-  currently preserved as-is.  Those were implemented as assembler
-  macros in the original, but asm6809's macro support cannot replicate
-  them.
-- Ditto with IFTST.
-- Ditto with IFCC.
-- Ditto with WHILE-ENDWH
-- Ditto with REPEAT-UNTIL
