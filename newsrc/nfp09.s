@@ -23,4 +23,5 @@
 	include "procs.s"
 	include "rndexep.s"
 	include "notrap.s"
+	include "check.s"
 	include "util.s"

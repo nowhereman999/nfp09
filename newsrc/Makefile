@@ -2,6 +2,7 @@ ROM_IMAGES=	nfp09.bin
 
 ROM_DEPS=	nfp09.s
 
+ROM_DEPS+=	check.s
 ROM_DEPS+=	comp.s
 ROM_DEPS+=	dispat.s
 ROM_DEPS+=	equates.s

@@ -9,6 +9,7 @@ end up in the same namespace.  Therefore, we need to create our own
 local namespaces in each file by tweaking the symbol names.
 
 FILES THAT HAVE BEEN CONVERTED:
+- check.sa
 - comp.sa
 - equates.sa
 - frnbak.sa
