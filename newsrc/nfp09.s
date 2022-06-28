@@ -22,4 +22,5 @@
 	include "comp.s"
 	include "procs.s"
 	include "rndexep.s"
+	include "notrap.s"
 	include "util.s"

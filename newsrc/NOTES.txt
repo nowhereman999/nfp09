@@ -13,6 +13,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - equates.sa
 - frnbak.sa
 - getput.sa
+- notrap.sa
 - procs.sa
 - rndexep.sa
 - util.sa
