@@ -134,3 +134,88 @@ DECD		macro
 		DECA
 668		DECB
 		endm
+
+;
+;**********************************************
+;
+;    XPLUSY --
+;
+;        THIS MACRO EFFICIENTLY ADDS THE 9-BYTE
+;    FRACTION POINTED TO BY XREG TO THAT POINTED
+;    TO BY YREG, LEAVING THE RESULT IN FRACTION
+;    POINTED TO BY XREG.  CARRY OUT OF HIGH-ORDER
+;    BIT IS IN CARRY FLAG.
+;
+;**********************************************
+;
+XPLUSY		macro
+		LDD	7,X
+		ADDD	7,Y
+		STD	7,X
+		LDD	5,X
+
+		; ADCD	(5,Y)
+		ADCB	1+5,Y
+		ADCA	5,Y
+
+		STD	5,X
+		LDD	3,X
+
+		; ADCD	(3,Y)
+		ADCB	1+3,Y
+		ADCA	3,Y
+
+		STD	3,X
+		LDD	1,X
+
+		; ADCD	(1,Y)
+		ADCB	1+1,Y
+		ADCA	1,Y
+
+		STD	1,X
+		LDB	0,X
+		ADCB	0,Y
+		STB	0,X
+		endm
+
+;
+;**********************************************
+;
+;    XSBTRY --
+;
+;        MACRO TO SUBTRACT 9-BYTE FRACTION POINTED
+;    TO BY Y-REG FROM THAT AT X-REG, RESULT STORED
+;    X-REG.  IT IS EFFICIENT.
+;
+;**********************************************
+;
+XSBTRY		macro
+		LDD	7,X
+		SUBD	7,Y
+
+		STD	7,X
+		LDD	5,X
+
+		; SBCD (5,Y)
+		SBCB	1+5,Y
+		SBCA	5,Y
+
+		STD	5,X
+		LDD	3,X
+
+		; SBCD (3,Y)
+		SBCB	1+3,Y
+		SBCA	3,Y
+
+		STD	3,X
+		LDD	1,X
+
+		; SBCD (1,Y)
+		SBCB	1+1,Y
+		SBCA	1,Y
+
+		STD	1,X
+		LDB	0,X
+		SBCB	0,Y
+		STB	0,X
+		endm
