@@ -19,6 +19,7 @@
 
 	include "getput.s"
 	include "dispat.s"
+	include "fmuldv.s"
 	include "comp.s"
 	include "procs.s"
 	include "rndexep.s"
