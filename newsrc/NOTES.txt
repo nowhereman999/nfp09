@@ -16,6 +16,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - frnbak.sa
 - getput.sa
 - intflt.sa
+- mvabsneg.sa
 - notrap.sa
 - procs.sa
 - rndexep.sa

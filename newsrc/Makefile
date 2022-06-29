@@ -10,6 +10,7 @@ ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
 ROM_DEPS+=	intflt.s
 ROM_DEPS+=	macros.s
+ROM_DEPS+=	mvabsneg.s
 ROM_DEPS+=	notrap.s
 ROM_DEPS+=	procs.s
 ROM_DEPS+=	rndexep.s

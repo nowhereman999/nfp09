@@ -25,4 +25,5 @@
 	include "notrap.s"
 	include "check.s"
 	include "intflt.s"
+	include "mvabsneg.s"
 	include "util.s"
