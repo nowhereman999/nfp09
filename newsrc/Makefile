@@ -8,6 +8,7 @@ ROM_DEPS+=	dispat.s
 ROM_DEPS+=	equates.s
 ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
+ROM_DEPS+=	intflt.s
 ROM_DEPS+=	macros.s
 ROM_DEPS+=	notrap.s
 ROM_DEPS+=	procs.s

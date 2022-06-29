@@ -24,4 +24,5 @@
 	include "rndexep.s"
 	include "notrap.s"
 	include "check.s"
+	include "intflt.s"
 	include "util.s"
