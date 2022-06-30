@@ -6,6 +6,7 @@ ROM_DEPS+=	check.s
 ROM_DEPS+=	comp.s
 ROM_DEPS+=	dispat.s
 ROM_DEPS+=	equates.s
+ROM_DEPS+=	fads.s
 ROM_DEPS+=	fmuldv.s
 ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
