@@ -8,6 +8,7 @@ ROM_DEPS+=	dispat.s
 ROM_DEPS+=	equates.s
 ROM_DEPS+=	fads.s
 ROM_DEPS+=	fmuldv.s
+ROM_DEPS+=	frmsqt.s
 ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
 ROM_DEPS+=	intflt.s

@@ -21,6 +21,7 @@
 	include "dispat.s"
 	include "fads.s"
 	include "fmuldv.s"
+	include "frmsqt.s"
 	include "comp.s"
 	include "procs.s"
 	include "rndexep.s"

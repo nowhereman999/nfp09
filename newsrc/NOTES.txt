@@ -15,6 +15,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - equates.sa
 - fads.sa
 - fmuldv.sa
+- frmsqt.sa
 - frnbak.sa
 - getput.sa
 - intflt.sa
