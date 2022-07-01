@@ -308,12 +308,12 @@ FADD_frac_endif
 	RTS
 
 ; TTL  FLOATING-POINT SUBTRACT
-************************************************************
-*
-*    FSUB --
-*	SUBTRACTS ARG2 FROM ARG1, LEAVING DIFFERENCE IN RESULT,
-*    BY NEGATING ARG2 AND CALLING 'FADD'.
-*
+;***********************************************************
+;
+;    FSUB --
+;	SUBTRACTS ARG2 FROM ARG1, LEAVING DIFFERENCE IN RESULT,
+;    BY NEGATING ARG2 AND CALLING 'FADD'.
+;
 FSUB
 	LDA	ARG2,U
 	COMA
