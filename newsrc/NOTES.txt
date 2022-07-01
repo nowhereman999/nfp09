@@ -11,6 +11,7 @@ local namespaces in each file by tweaking the symbol names.
 FILES THAT HAVE BEEN CONVERTED:
 - check.sa
 - comp.sa
+- compare.sa
 - dispat.sa
 - equates.sa
 - fads.sa

@@ -29,4 +29,5 @@
 	include "check.s"
 	include "intflt.s"
 	include "mvabsneg.s"
+	include "compare.s"
 	include "util.s"
