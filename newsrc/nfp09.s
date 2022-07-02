@@ -30,4 +30,5 @@
 	include "intflt.s"
 	include "mvabsneg.s"
 	include "compare.s"
+	include "ins.s"
 	include "util.s"

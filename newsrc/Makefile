@@ -12,6 +12,7 @@ ROM_DEPS+=	fmuldv.s
 ROM_DEPS+=	frmsqt.s
 ROM_DEPS+=	frnbak.s
 ROM_DEPS+=	getput.s
+ROM_DEPS+=	ins.s
 ROM_DEPS+=	intflt.s
 ROM_DEPS+=	macros.s
 ROM_DEPS+=	mvabsneg.s
