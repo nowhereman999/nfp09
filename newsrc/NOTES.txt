@@ -19,6 +19,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - frmsqt.sa
 - frnbak.sa
 - getput.sa
+- ins.sa
 - intflt.sa
 - mvabsneg.sa
 - notrap.sa
@@ -32,5 +33,3 @@ MAJOR TODO ITEMS:
 - I have also found some opportunities for optimization that are
   present after removing the macro-ized IF-ELSE-ENDIF stuff.  Those
   locations are also tagged with XXXJRT.
-- There are equates in equates.s that will be interpreted as octal
-  numbers by asm6809; verify that is the intent.
