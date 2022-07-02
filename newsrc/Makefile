@@ -20,6 +20,7 @@ ROM_DEPS+=	notrap.s
 ROM_DEPS+=	procs.s
 ROM_DEPS+=	rndexep.s
 ROM_DEPS+=	util.s
+ROM_DEPS+=	utilio.s
 
 CLEANFILES=	$(ROM_IMAGES) *.lst
 

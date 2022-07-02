@@ -32,3 +32,4 @@
 	include "compare.s"
 	include "ins.s"
 	include "util.s"
+	include "utilio.s"
