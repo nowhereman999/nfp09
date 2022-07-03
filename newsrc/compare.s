@@ -195,9 +195,7 @@ MAGCMP_done
 	; PROCEED TO STEP II TO EITHER SET CCR
 	; OR AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call here?
-	LBSR	CMPST2
-	RTS			; RETURN
+	LBRA	CMPST2
 
 ;*****************************************************************
 ;
@@ -248,9 +246,7 @@ INFAR2_done
 	; PROCEED TO STEP II TO EITHER SET CCR
 	; OR AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call?
-	LBSR  CMPST2
-	RTS			; RETURN
+	LBRA  CMPST2
 
 ;*****************************************************************
 ;
@@ -300,9 +296,7 @@ INFAR1_done
 	; PROCEED TO STEP II TO EITHER SET CCR OR
 	; AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call?
-	BSR	CMPST2
-	RTS			; RETURN
+	BRA	CMPST2
 
 ;*****************************************************************
 ;
@@ -356,9 +350,7 @@ CMPINF_done
 	; PROCEED TO STEP II TO EITHER SET CC REG.
 	; OR AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call?
-	BSR  CMPST2
-	RTS			; RETURN
+	BRA  CMPST2
 
 ;*****************************************************************
 ;
@@ -378,9 +370,7 @@ NANCMP
 	; PROCEED TO STEP II TO EITHER SET CC REG. OR
 	; AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call?
-	BSR	CMPST2
-	RTS			; RETURN
+	BRA	CMPST2
 
 ;*****************************************************************
 ;
@@ -400,9 +390,7 @@ CMPZER
 	; PROCEED TO STEP II TO EITHER SET CC REG.
 	; SO AFFIRM/DISAFFIRM A PREDICATE.
 	;
-	; XXXJRT tail-call?
-	BSR	CMPST2
-	RTS			; RETURN
+	BRA	CMPST2
 
 ;*****************************************************************
 ;
@@ -440,9 +428,7 @@ ARG1UN
 	; NORMALIZE OPERAND AND PERFORM THE COMPARE AS WITH TWO NORMALIZED
 	; OPERANDS
 	;
-	; XXXJRT tail-call?
-	BSR	NRMCMP
-	RTS			; RETURN
+	BRA	NRMCMP
 
 ;*****************************************************************
 ;
@@ -480,9 +466,7 @@ ARG2UN
 	; NORMALIZE OPERAND AND PERFORM THE COMPARE AS WITH TWO NORMALIZED
 	; OPERANDS
 	;
-	; XXXJRT tail-call?
-	BSR	NRMCMP
-	RTS			; RETURN
+	BRA	NRMCMP
 
 ;*****************************************************************
 ;
@@ -523,9 +507,7 @@ BOTHUN
 	; NORMALIZE OPERAND AND PERFORM THE COMPARE AS WITH TWO NORMALIZED
 	; OPERANDS
 	;
-	; XXXJRT tail-call?
-	BSR	NRMCMP
-	RTS			; RETURN
+	BRA	NRMCMP
 
 ;
 ; PROCEDURE  NRMCMP
