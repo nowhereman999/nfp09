@@ -166,13 +166,9 @@ VALID
 	BEQ	2F		; No, handle non-trapping case.
 	LBSR	ADBIAS
 	; XXXJRT ROUND needs to be calle with X pointing to the result?
-	; XXXJRT could to a tail-call with LBRA here...
-	LBSR	ROUND		; DELIVER ROUNDED RESULT TO TRAP HANDLER
-	RTS			; Done.
+	LBRA	ROUND		; DELIVER ROUNDED RESULT TO TRAP HANDLER
 2
-	; XXXJRT could do a tail-call with LBRA here...
-	LBSR	UNFLNT		; Go handle the underflow.
-	RTS			; Done.
+	LBRA	UNFLNT		; Go handle the underflow.
 
 1	; ROUND AND CHECK FOR OVERFLOW
 	LEAX	RESULT,U	; POINT X TO RESULT
@@ -199,13 +195,9 @@ VALID
 	; Joel Boney (RIP), and I don't know about Greg Walker.
 	;
 	BEQ	2F		; No, handle non-trapping case.
-	; XXXJRT could to a tail-call with LBRA here...
-	LBSR	SUBIAS
-	RTS			; Done.
+	LBRA	SUBIAS
 2
-	; XXXJRT could to a tail-call with LBRA here...
-	LBSR	OVFLNT		; Go handle the overflow.
-	RTS			; Done.
+	LBRA	OVFLNT		; Go handle the overflow.
 
 ;
 ;    FPMOVE --
