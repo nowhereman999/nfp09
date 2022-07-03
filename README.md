@@ -70,9 +70,6 @@ is cycle- and space-efficient.
 - Go back and remove some of the commented-out IF-ELSE-ENDIF comments.
   I originally kept them, but stopped including them as I converted more
   files beause it just made things harder to read.
-- Add some conditionals for building without either the reg-call
-  or the stack-call interface.  This will be useful for anyone wanting
-  to embed this into another ROM because it can save a fair bit of space.
 
 ### Testing
 
