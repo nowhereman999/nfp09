@@ -17,6 +17,7 @@ ROM_DEPS+=	intflt.s
 ROM_DEPS+=	macros.s
 ROM_DEPS+=	mvabsneg.s
 ROM_DEPS+=	notrap.s
+ROM_DEPS+=	outs.s
 ROM_DEPS+=	procs.s
 ROM_DEPS+=	rndexep.s
 ROM_DEPS+=	util.s

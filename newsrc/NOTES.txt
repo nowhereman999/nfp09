@@ -23,6 +23,7 @@ FILES THAT HAVE BEEN CONVERTED:
 - intflt.sa
 - mvabsneg.sa
 - notrap.sa
+- outs.sa
 - procs.sa
 - rndexep.sa
 - util.sa

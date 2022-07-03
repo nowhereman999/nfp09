@@ -31,5 +31,6 @@
 	include "mvabsneg.s"
 	include "compare.s"
 	include "ins.s"
+	include "outs.s"
 	include "util.s"
 	include "utilio.s"
