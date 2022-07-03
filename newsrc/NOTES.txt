@@ -1,12 +1,12 @@
-This is a collection of notes I'm maintaining while doing the
-updating work.
-
 The main assembly file that will be built by asm6809 is nfp09.s.  This file
-will include the individual updated .s files in the correct order.
+will include the individual updated .s files in the correct order.  Well,
+at least the important ones (the rest are in an arbitrary order).
 
 Note that since asm6809 does not have multi-object linking, all symbols
-end up in the same namespace.  Therefore, we need to create our own
-local namespaces in each file by tweaking the symbol names.
+end up in the same namespace.  I've used asm6809's local label feature
+extensively to avoid polluting the symbol namespace.  There were a few
+collisions that I needed to handle by either tweaking the names or
+by commenting out duplicate equates.
 
 FILES THAT HAVE BEEN CONVERTED:
 - check.sa
@@ -28,9 +28,38 @@ FILES THAT HAVE BEEN CONVERTED:
 - rndexep.sa
 - util.sa
 
-MAJOR TODO ITEMS:
+This not the entirety of the original source files, but it is what is
+needed in order to build an image.  It will NOT build a complete ROM
+image... that also requires the "endit.sa" file, and the computation
+of the appropriate CRC.  I'm not interested in building an 8K ROM image
+personally (I plan to embed this in another ROM), but if someone wants
+to provide changes to allow building an 8K ROM that can be linked using
+the standard OS-9 mechanism, please do so!
+
+MAJOR TODO ITEMS
+
 - I have found some for-sure bugs and some maybe bugs.  They're
   tagged with XXXJRT and I need to file Issues for them.
 - I have also found some opportunities for optimization that are
   present after removing the macro-ized IF-ELSE-ENDIF stuff.  Those
   locations are also tagged with XXXJRT.
+- I need to go through the warts.sa file and determine if issues
+  need to be filed for those items as well.
+
+MINOR TODO ITEMS
+
+- Go back and remove some of the commented-out IF-ELSE-ENDIF comments.
+  I originally kept them, but stopped including them as I converted more
+  files beause it just made things harder to read.
+- Add some conditionals for building without either the reg-call
+  or the stack-call interface.  This will be useful for anyone wanting
+  to embed this into another ROM because it can save a fair bit of space.
+
+TESTING
+
+Yes!  There should be some!  I'm sure there are bugs lurking in here,
+both in the original code and almost certainly ones that I added while
+doing the conversion.  I have some ideas about a testing using my 6809
+CPU emulator, and hand-wavy something something custom instructions to
+compare computed results to expected results.  Anyway, if you're interested
+in helping out with this effort, by all means let me know!
