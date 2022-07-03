@@ -62,9 +62,6 @@ is cycle- and space-efficient.
 
 - I have found some for-sure bugs and some maybe bugs.  They're
   tagged with *XXXJRT* and I need to file Issues for them.
-- I have also found some opportunities for optimization that are
-  present after removing the macro-ized IF-ELSE-ENDIF stuff.  Those
-  locations are also tagged with *XXXJRT*.
 - I need to go through the warts.sa file and determine if issues
   need to be filed for those items as well.
   
