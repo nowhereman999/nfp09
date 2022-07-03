@@ -263,8 +263,7 @@ FIXZER
 	;
 	; RETURN A ZERO
 	;
-	LBSR	RTZERO		; XXXJRT tail-call?
-	RTS			; RETURN
+	LBRA	RTZERO
 
 ;*****************************************************************
 ;
