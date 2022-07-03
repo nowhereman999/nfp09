@@ -117,13 +117,20 @@ DISPAT
 	;
 1	LDD	B,Y
 	LEAY	ROMSTR,PCR
-	; XXXJRT we could do a tail-call here?
-	JSR	D,Y		; JUMP TO PROCESSING SUBROUTINE
 	;
+	; Original code had the following comment here:
+	;
+	; <quote>
 	;   HERE IS COMMON RETURN POINT FOR  ALL
 	;     PROCESSING ROUTINES.
+	; </quote>
 	;
-	RTS
+	; However, there was no common post-processing performed,
+	; only an RTS instruction.  As such, we can shave several
+	; cycles off of every floating point operation by simply
+	; performing a tail-call here.
+	;
+	JMP	D,Y		; JUMP TO PROCESSING SUBROUTINE
 
 ;*****************************************************************
 ;
