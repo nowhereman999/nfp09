@@ -1,6 +1,7 @@
-ROM_IMAGES=	nfp09.bin
+ROM_IMAGES=	nfp09.bin nfp09-reg-abi.bin nfp09-stack-abi.bin
 
 ROM_DEPS=	nfp09.s
+ROM_DEPS+=	Makefile
 
 ROM_DEPS+=	check.s
 ROM_DEPS+=	comp.s
@@ -28,7 +29,16 @@ CLEANFILES=	$(ROM_IMAGES) *.lst
 all: $(ROM_IMAGES)
 
 nfp09.bin: $(ROM_DEPS)
-	asm6809 -l nfp09.lst -o nfp09.bin nfp09.s
+	asm6809 -d CONFIG_REG_ABI=1 -d CONFIG_STACK_ABI=1 \
+	    -l nfp09.lst -o nfp09.bin nfp09.s
+
+nfp09-reg-abi.bin: $(ROM_DEPS)
+	asm6809 -d CONFIG_REG_ABI=1 \
+	    -l nfp09-reg-abi.lst -o nfp09-reg-abi.bin nfp09.s
+
+nfp09-stack-abi.bin: $(ROM_DEPS)
+	asm6809 -d CONFIG_STACK_ABI=1 \
+	    -l nfp09-stack-abi.lst -o nfp09-stack-abi.bin nfp09.s
 
 clean:
 	-rm -f $(CLEANFILES)

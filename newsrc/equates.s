@@ -8,6 +8,12 @@
 ;	 THESE ARE THE GLOBAL EQUATES FOR THE 6809 FP PACKAGE
 ;
 ;*****************************************************************
+
+;
+; VERSION OF THIS SOFTWARE PACKAGE
+;
+NFP09_VERSION	EQU	'0'
+
 ;
 ; BIT VALUES
 ;
