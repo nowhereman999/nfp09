@@ -770,6 +770,30 @@ nfp09_set_oneentry	macro
 ; |        |                              | pull result                 |
 ; -----------------------------------------------------------------------
 ;
+;                            PARAMETER WORDS
+;
+; For predicate compares, X contains a parameter word with the condition to be
+; affirmed or disaffirmed.  The predicate bits in X are as follows:
+;
+; Bit 0    : unordered bit
+; Bit 1    : less than bit
+; Bit 2    : equal to bit
+; Bit 3    : greater than bit
+; Bit 4    : not equal bit
+; Bits 5-15: not used
+;
+; greater than or equal to = bit 3 + bit 2
+; less than or equal to = bit 2 + bit 1
+;
+; For moves, U contains a parameter word describing the size of the source and
+; destination arguments.  The bits are as follows, where the size is as defined
+; in the fpcb control byte
+; Bits 0-2  : Destination size
+; Bits 3-7  : unused
+; Bits 8-10 : Source size
+; Bits 11-15: unused
+;
+
 FPOP_M		equ	_bit7_			  ; mixed arguments
 FPOP_T		equ	_bit6_			  ; trap on unordered
 
@@ -793,6 +817,17 @@ FPOP_FNEG	equ	FPOP_FABS+2		  ; FNEG
 FPOP_DECBIN	equ	FPOP_FNEG+2		  ; DECBIN
 FPOP_FFLTS	equ	FPOP_DECBIN+2		  ; FFLTS
 FPOP_FFLTD	equ	FPOP_FFLTS+2		  ; FFLTD
+
+PCMP_UN		equ	_bit0_
+PCMP_LT		equ	_bit1_
+PCMP_EQ		equ	_bit2_
+PCMP_GT		equ	_bit3_
+PCMP_NE		equ	_bit4_
+PCMP_GE		equ	PCMP_GT+PCMP_EQ
+PCMP_LE		equ	PCMP_LT+PCMP_EQ
+
+PCMP_RES_TRUE	equ	0
+PCMP_RES_FALSE	equ	$FF
 
 ;
 ; The following convenience macro makes calling NFP09 a tad
