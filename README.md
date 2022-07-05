@@ -1,6 +1,6 @@
-# nfp09 - An IEEE 754 floating point library for the MC6809
+# NFP09 - An IEEE 754 floating point library for the MC6809
 
-nfp09 is a floating poing library for the MC6809 microprocessor, based on the original
+NFP09 is a floating poing library for the MC6809 microprocessor, based on the original
 Motorola MC6839 floating point firmware for MC6809 microprocessor, updated to build with the
 [asm6809](https://www.6809.org.uk/asm6809/) assembler.
 
@@ -70,6 +70,13 @@ is cycle- and space-efficient.
 - Go back and remove some of the commented-out IF-ELSE-ENDIF comments.
   I originally kept them, but stopped including them as I converted more
   files beause it just made things harder to read.
+
+### Integration and documentation
+
+Kottke's historical documentation is useful, but no longer completely accurate for NFP09.  I have
+used it as the basis for the interface documentation that can be found in [nfp09-abi.s](abi/nfp09-abi.s).
+That file also contains all of the equates necessary to use NFP09 in a way that won't pollute your
+application's own symbol namespace with a bunch useless junk.
 
 ### Testing
 
