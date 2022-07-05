@@ -7,7 +7,7 @@
 ;     Written for Motorola by Joel Boney, G. Stevens, and G. Walker, 1980
 ;             Released into the public domain by Motorola in 1988
 ;         Docs and apps for Tandy Color Computer by Rich Kottke, 1989
-;      Modified for asm6809 and additional updates by Jason Thorpe, 2022
+;    Modified for asm6809 and additional improvements by Jason Thorpe, 2022
 ;
 ;******************************************************************************
 ;
