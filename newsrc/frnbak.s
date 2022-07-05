@@ -57,6 +57,11 @@
 ; NOTE: This label should always be the first
 ; byte in this module!
 ;
+; We set the origin explicitly to $0000 so that any
+; relative-to-ROMSTR offset can just be delcared without
+; subtracting ROMSTR.
+;
+	org	$0000
 ROMSTR
 
 ;****************************************************************
@@ -70,7 +75,7 @@ ROMSTR
 ; START OF STANDARD HEADER
 	FDB	$87CD		; SYNC BYTES
 	FDB	$2000		; MODULE SIZE (8K)
-	FDB	MODNAME-ROMSTR	; OFFSET TO NAME
+	FDB	MODNAME		; OFFSET TO NAME
 	FCB	$B1		; MULTI-MODULE,6809 OBJECT CODE
 	FCB	$81		; SHAREABLE, REV. 1
 ;
@@ -90,7 +95,7 @@ ROMSTR
 ; ENTRY1	(symbol not referenced)
 	FCC	"RE"		; NAME=REG
 	FCB	$80+'G'
-	FDB	FPREG-ROMSTR	; OFFSET TO ENTRY
+	FDB	FPREG		; OFFSET TO ENTRY
 	FDB	0		; AMOUNT OF PERM STORAGE
 	FDB	155		; MAX STACK SIZE
 	endif
@@ -98,7 +103,7 @@ ROMSTR
 ; ENTRY2	(symbol not referenced)
 	FCC	"ST"		; NAME=STK
 	FCB	$80+'K'
-	FDB	FPSTAK-ROMSTR	; OFFSET TO ENTRY
+	FDB	FPSTAK		; OFFSET TO ENTRY
 	FDB	0		; PERMANENT STORAGE
 	FDB	185		; MAX STSACK SIZE
 	endif
