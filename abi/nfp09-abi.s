@@ -468,6 +468,15 @@ FP_CTRL_NRM		equ	_bit3_
 FP_CTRL_PREC		equ	_bit5_+_bit6_+_bit7_
 
 ;
+; General precision equates.
+;
+FP_PREC_SINGLE		equ	0		; single precision
+FP_PREC_DOUBLE		equ	1		; double precision
+FP_PREC_EXT		equ	2		; extended precision
+FP_PREC_EXTFS		equ	3		; extended forced to single
+FP_PREC_EXTFD		equ	4		; extended forced to double
+
+;
 ; Closure modes in control byte
 ;
 FP_CTRL_PROJ		equ	0
@@ -484,11 +493,11 @@ FP_CTRL_RM		equ	_bit1_+_bit2_	; round to -Infinity
 ;
 ; Precision modes in control byte
 ;
-FP_CTRL_SINGLE		equ	0		; single
-FP_CTRL_DOUBLE		equ	_bit5_		; double
-FP_CTRL_EXT		equ	_bit6_		; extended
-FP_CTRL_EXTFS		equ	_bit5_+_bit6_	; extended forced to single
-FP_CTRL_EXTFD		equ	_bit7_		; extended forced to double
+FP_CTRL_SINGLE		equ	(FP_PREC_SINGLE << 5)
+FP_CTRL_DOUBLE		equ	(FP_PREC_DOUBLE << 5)
+FP_CTRL_EXT		equ	(FP_PREC_EXT << 5)
+FP_CTRL_EXTFS		equ	(FP_PREC_EXTFS << 5)
+FP_CTRL_EXTFD		equ	(FP_PREC_EXTFD << 5)
 
 ;
 ; STATUS BYTE - Written by NFP09 to indicate any errors that have occured.  Bits
@@ -557,7 +566,7 @@ FP_ERR_INX		equ	_bit6_		; inexact result
 ;
 
 ;
-; TRAP VECTOR - If a trap occurs, NFP09 will JUMP indirectly to the trap address
+; TRAP VECTOR - If a trap occurs, NFP09 will JSR indirectly to the trap address
 ;               in the fpcb.  Accumulator A will contain the trap type; if more
 ;               than one trap has occured, the higher priority one is returned
 ;               (0 = highest priority).  The trap types are:
@@ -566,10 +575,20 @@ FP_ERR_INX		equ	_bit6_		; inexact result
 ;               1 = overflow
 ;               2 = underflow
 ;               3 = divide by zero
-;               4 = unnormalized
+;               4 = unordered compare
 ;               5 = integer overflow
 ;               6 = inexact result
 ;
+; XXX Expand documentation on trap handling.
+;
+FP_TRAP_IOP		equ	0		; invalid operation
+FP_TRAP_OVF		equ	1		; overflow
+FP_TRAP_UNF		equ	2		; underflow
+FP_TRAP_DZ		equ	3		; division by zero
+FP_TRAP_UN		equ	4		; unordered
+FP_TRAP_IOV		equ	5		; integer overflow
+FP_TRAP_INX		equ	6		; inexact result
+
 ;******************************************************************************
 ;
 ;                          APPLICATION INTERFACE
@@ -775,23 +794,24 @@ nfp09_set_oneentry	macro
 ; For predicate compares, X contains a parameter word with the condition to be
 ; affirmed or disaffirmed.  The predicate bits in X are as follows:
 ;
-; Bit 0    : unordered bit
-; Bit 1    : less than bit
-; Bit 2    : equal to bit
-; Bit 3    : greater than bit
-; Bit 4    : not equal bit
+; Bit  0   : unordered bit
+; Bit  1   : less than bit
+; Bit  2   : equal to bit
+; Bit  3   : greater than bit
+; Bit  4   : not equal bit
 ; Bits 5-15: not used
 ;
 ; greater than or equal to = bit 3 + bit 2
 ; less than or equal to = bit 2 + bit 1
 ;
 ; For moves, U contains a parameter word describing the size of the source and
-; destination arguments.  The bits are as follows, where the size is as defined
-; in the fpcb control byte
-; Bits 0-2  : Destination size
-; Bits 3-7  : unused
-; Bits 8-10 : Source size
-; Bits 11-15: unused
+; destination arguments.  The bits are as follows:
+;
+; Bits 0-2 : Destination size
+; Bit  3   : reserved (must be zero)
+; Bits 4-6 : Source size
+; Bit  7   : reserved (must be zero)
+; Bits 8-15: unused
 ;
 
 FPOP_M		equ	_bit7_			  ; mixed arguments
@@ -818,6 +838,9 @@ FPOP_DECBIN	equ	FPOP_FNEG+2		  ; DECBIN
 FPOP_FFLTS	equ	FPOP_DECBIN+2		  ; FFLTS
 FPOP_FFLTD	equ	FPOP_FFLTS+2		  ; FFLTD
 
+;
+; Parameter word bits for FPCMP / FTPCMP.
+;
 PCMP_UN		equ	_bit0_
 PCMP_LT		equ	_bit1_
 PCMP_EQ		equ	_bit2_
@@ -828,6 +851,21 @@ PCMP_LE		equ	PCMP_LT+PCMP_EQ
 
 PCMP_RES_TRUE	equ	0
 PCMP_RES_FALSE	equ	$FF
+
+;
+; Parameter word definitions for FMOV.
+;
+FMOV_RES_SINGLE		equ	FP_PREC_SINGLE
+FMOV_RES_DOUBLE		equ	FP_PREC_DOUBLE
+FMOV_RES_EXT		equ	FP_PREC_EXT
+FMOV_RES_EXTFS		equ	FP_PREC_EXTFS
+FMOV_RES_EXTFD		equ	FP_PREC_EXTFD
+
+FMOV_ARG_SINGLE		equ	(FP_PREC_SINGLE << 4)
+FMOV_ARG_DOUBLE		equ	(FP_PREC_DOUBLE << 4)
+FMOV_ARG_EXT		equ	(FP_PREC_EXT << 4)
+FMOV_ARG_EXTFS		equ	(FP_PREC_EXTFS << 4)
+FMOV_ARG_EXTFD		equ	(FP_PREC_EXTFD << 4)
 
 ;
 ; The following convenience macro makes calling NFP09 a tad
