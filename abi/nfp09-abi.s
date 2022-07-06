@@ -90,6 +90,15 @@
 ;
 ; NFP09 supports both short (16 bit) and long (32 bit) integers.
 ;
+
+SIZEOF_FPSINGLE		equ	4
+SIZEOF_FPDOUBLE		equ	8
+SIZEOF_FPEXT		equ	10
+SIZEOF_FPBCD		equ	26
+SIZEOF_SHORTINT		equ	2
+SIZEOF_LONGINT		equ	4
+
+;
 ;               SPECIAL VALUES (SINGLE AND DOUBLE FORMAT)
 ;
 ; Generally, when operated on the special values will give predictable
@@ -661,8 +670,8 @@ FP_TRAP_INX		equ	6		; inexact result
 ; The following illustrates how to compute the NFP09 entry points,
 ; assuming that NFP09 is located at a fixed location in ROM:
 ;
-; nfp09_regcall		rzb	2
-; nfp09_stkcall		rzb	2
+; nfp09_regcall		rmb	2
+; nfp09_stkcall		rmb	2
 ;
 ;	ldx	#NFP09_ROM_ADDR		; X <- NFP09 ROM address
 ;	ldd	NFP09_EXECOFF_REG,X	; D <- regcall entry offset
@@ -674,7 +683,7 @@ FP_TRAP_INX		equ	6		; inexact result
 ;
 ; If you are using an NFP09 image with only the Register or Stack ABI:
 ;
-; nfp09_entryvec	rzb	2
+; nfp09_entryvec	rmb	2
 ;
 ;	ldx	#NFP09_ROM_ADDR		; X <- NFP09 ROM address
 ;	ldd	NFP09_EXECOFF_SINGLE,X	; D <- entry offset
@@ -841,7 +850,7 @@ FPOP_FFLTD	equ	FPOP_FFLTS+2		  ; FFLTD
 ;
 ; Parameter word bits for FPCMP / FTPCMP.
 ;
-PCMP_UN		equ	_bit0_
+PCMP_UN		equ	_bit0_			; predicates...
 PCMP_LT		equ	_bit1_
 PCMP_EQ		equ	_bit2_
 PCMP_GT		equ	_bit3_
@@ -849,8 +858,8 @@ PCMP_NE		equ	_bit4_
 PCMP_GE		equ	PCMP_GT+PCMP_EQ
 PCMP_LE		equ	PCMP_LT+PCMP_EQ
 
-PCMP_RES_TRUE	equ	0
-PCMP_RES_FALSE	equ	$FF
+PCMP_TRUE	equ	0			; ...results
+PCMP_FALSE	equ	$FF
 
 ;
 ; Parameter word definitions for FMOV.
