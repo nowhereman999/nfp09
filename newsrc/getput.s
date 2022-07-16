@@ -397,7 +397,7 @@ MOVRSL
 	BSR	PUTSGL		; SINGLE
 	BRA	2F
 1
-	CMPB	#2		; Double?
+	CMPB	#DBL		; Double?
 	BNE	1F		; Not double...
 	BSR	PUTDBL
 	BRA	2F
