@@ -218,7 +218,7 @@ ENORM
 ;*****************************************************************
 PREC
 	TST	FUNCT,U		; Mixed arguments?
-	BNE	1F		; Yes, go handle it.
+	BLT	1F		; Yes, go handle it.
 	LDB	[PFPCB,U]	; GET FPCB CONTROL WORD. BITS 5-7 ARE PRECISION
 	LSRB			; POSITION PRECISION IN 4LSB
 	LSRB
