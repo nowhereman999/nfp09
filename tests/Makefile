@@ -6,7 +6,7 @@ CFLAGS=		-O1 -g -Wall
 
 all: $(TESTPROGS) $(TESTROM)
 
-nfp09test-pg09-rom.bin: nfp09test-pg09-rom.s
+nfp09test-pg09-rom.bin: nfp09test-pg09-rom.s ../newsrc/nfp09.bin
 	asm6809 -o nfp09test-pg09-rom.bin nfp09test-pg09-rom.s
 
 nfp09test-single.bin: nfp09test-single.s

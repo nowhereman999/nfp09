@@ -37,9 +37,13 @@
 #ifdef FPTYPE_SINGLE
 typedef	float	fpval_type;
 typedef	uint32_t fpval_int;
+#define	FPCONST(v)	v##F
+#define	FPFUNC(x)	x##f
 #else
 typedef	double	fpval_type;
 typedef	uint64_t fpval_int;
+#define	FPCONST(v)	v
+#define	FPFUNC(x)	x
 #endif
 
 #define	fpval_bytes	sizeof(fpval_int)
@@ -105,6 +109,25 @@ emit_tcmp(const char *exp_label, int len)
 	printf("\tldy\t#%s\n", exp_label);
 	printf("\tlda\t#%d\n", len);
 	printf("\tfdb\t$11fc\t\t; pg09 TCMP\n");
+}
+
+static void
+emit_exit(void)
+{
+	printf("\tfdb\t$11fd\t\t; pg09 EXIT\n");
+}
+
+static void
+emit_trc(uint8_t a)
+{
+	printf("\tfdb\t$11fb\t\t; pg09 TRC\n");
+	printf("\tfcc\t%d\n", a);
+}
+
+static void
+emit_pri(void)
+{
+	printf("\tfdb\t$11fe\t\t; pg09 PRI\n");
 }
 
 static int callnum;
@@ -226,7 +249,7 @@ main(int argc, char *argv[])
 "	; The reset vector points to $0000, so we jump to the\n"
 "	; real entry after our zero page variables.\n"
 "	;\n"
-"	jmp	testrom_start\n"
+"	jmp	testprog_start\n"
 "\n"
 "nfp09_entryvec\n"
 "	rmb	2\n"
@@ -236,7 +259,13 @@ main(int argc, char *argv[])
 "	rmb	SIZEOF_FPBCD\n"
 "\n"
 "	section	\"CODE\"\n"
-"testrom_start\n"
+"testprog_start\n"
+"	section \"CODE\"\n"
+"	;\n"
+"	; Initialize the stack.\n"
+"	;\n"
+"	lds	#stack_top\n"
+"\n"
 "	;\n"
 "	; Initialize our NFP09 entry vector.\n"
 "	;\n"
@@ -260,19 +289,24 @@ main(int argc, char *argv[])
 "\n"
 "	section	\"DATA\"\n"
 #ifdef FPTYPE_SINGLE
-"	fcn	\"NFP09 single-precision test ROM\"\n"
+"	fcn	\"NFP09 single-precision test program\"\n"
 #else
-"	fcn	\"NFP09 double-precision test ROM\"\n"
+"	fcn	\"NFP09 double-precision test program\"\n"
 #endif
+"	rmb	512\n"
+"stack_top\n"
+"\n"
+"	section \"CODE\"\n"
 "\n");
 
-	emit_dyadic("FADD 1.0 2.0",
-	    "FADD", 1.0, 2.0, 1.0 + 2.0);
-
-	emit_monadic("FSQRT 4.0",
-	    "FSQRT", 4.0, sqrt(4.0));
+	/*
+	 * Simple monadic calls.
+	 */
+	emit_monadic("FABS -1.0",
+	    "FABS", FPCONST(-1.0), FPFUNC(fabs)(FPCONST(-1.0)));
 
 	printf(
+"\n"
 "	section \"CODE\"\n"
 "	; Exit out of the emulator.\n"
 "	fdb	$11fd\t\t; pg09 EXIT\n");
