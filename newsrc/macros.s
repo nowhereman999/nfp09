@@ -128,11 +128,11 @@ INCD		macro
 666
 		endm
 
-DECD		macro
-		TSTB
+DECD		macro				* Fixed had a TSTB instead of a DECB and then had a DECA and DECB if B was zero
+		DECB
 		BNE	668F
 		DECA
-668		DECB
+668
 		endm
 
 ;
